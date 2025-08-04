@@ -1,4 +1,45 @@
 date,amount,category,description
 20-07-2025,125.9,Income,Salary
+21-07-2025,40.0,Exspense,Snacks
+22-07-2025,60.0,Exspense,Transport
+23-07-2025,150.0,Income,Freelance
+24-07-2025,35.0,Exspense,Coffee
+25-07-2025,200.0,Income,Bonus
+26-07-2025,50.0,Exspense,Groceries
+27-07-2025,80.0,Exspense,Shopping
+28-07-2025,125.0,Income,Allowance
+29-07-2025,45.0,Exspense,Lunch
+30-07-2025,100.0,Income,Side Job
+31-07-2025,30.0,Exspense,Parking
+01-08-2025,125.0,Income,Salary
+02-08-2025,50.0,Exspense,Gas
 03-08-2025,125.89,Income,Payday
-c
+04-08-2025,50.0,Exspense,Gas
+04-08-2025,100.0,Income,Allowance
+05-08-2025,75.0,Exspense,Snacks
+06-08-2025,150.0,Income,Part-time
+07-08-2025,45.0,Exspense,Taxi
+08-08-2025,200.0,Income,Freelance
+09-08-2025,60.0,Exspense,Restaurant
+10-08-2025,75.5,Exspense,Groceries
+11-08-2025,125.0,Income,Project Bonus
+12-08-2025,200.0,Income,Freelance Work
+13-08-2025,35.0,Exspense,Snacks
+14-08-2025,250.0,Income,Part-time
+15-08-2025,45.0,Exspense,Transportation
+16-08-2025,80.0,Exspense,Shopping
+17-08-2025,120.0,Income,Side Hustle
+18-08-2025,300.0,Income,Bonus
+19-08-2025,50.0,Exspense,Food
+20-08-2025,60.0,Exspense,Restaurant
+21-08-2025,180.0,Income,Allowance
+22-08-2025,70.0,Exspense,Groceries
+23-08-2025,125.0,Income,Part-time
+24-08-2025,40.0,Exspense,Snacks
+25-08-2025,500.0,Income,Project Payment
+26-08-2025,55.0,Exspense,Transport
+27-08-2025,100.0,Income,Side Job
+28-08-2025,80.0,Exspense,Shopping
+29-08-2025,150.0,Income,Freelance
+30-08-2025,150.0,Income,Part-time Job
+
