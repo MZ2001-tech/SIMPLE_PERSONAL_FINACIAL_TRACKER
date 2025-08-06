@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from data_entry import get_amount, get_category, get_date, get_description
 
 class CSV:
+    #Declare CSV Variables
     CSV_FILE = "finace_data.csv"
     COLUMNS = ["date", "amount", "category", "description"]
     FORMAT = "%d-%m-%Y"
@@ -12,7 +13,7 @@ class CSV:
     @classmethod
     def iniatialize_csv(cls):
         try:
-            pd.read_csv(cls.CSV_FILE)
+            pd.read_csv(cls.CSV_FILE) #Open CSV file 
         except FileNotFoundError:
             df = pd.DataFrame(columns=cls.COlUMNS)
             df.to_csv(cls.CSV_FILE, index=False)
@@ -20,26 +21,26 @@ class CSV:
     @classmethod
     def get_transaction(cls, start_date, end_date):
         df = pd.read_csv(cls.CSV_FILE)
-        df["date"] = pd.to_datetime(df["date"], format= CSV.FORMAT)
-        start_date = datetime.strptime(start_date, CSV.FORMAT)
-        end_date = datetime.strptime(end_date, CSV.FORMAT)
+        df["date"] = pd.to_datetime(df["date"], format= CSV.FORMAT) 
+        start_date = datetime.strptime(start_date, CSV.FORMAT) # Select Starting Date row
+        end_date = datetime.strptime(end_date, CSV.FORMAT) # Select End Date Row
 
-        mask = (df["date"] >= start_date) & (df["date"] <= end_date)
-        filtered_df = df.loc[mask]
-
+        mask = (df["date"] >= start_date) & (df["date"] <= end_date) # if the range date is correct
+        filtered_df = df.loc[mask] #Acess data frame
+        #Conditions
         if filtered_df.empty: 
             print('No transaction found in the given date range.')
         else:
-            print(f"Transaction from {start_date.strftime(CSV.FORMAT)} to {end_date.strftime(CSV.FORMAT)}"
+            print(f"Transaction from {start_date.strftime(CSV.FORMAT)} to {end_date.strftime(CSV.FORMAT)}" #print date range strftime -> print dates into strings
                 
             )
 
             print(
                 filtered_df.to_string(
-                    index = False, formatters={"date": lambda x: x.strftime(CSV.FORMAT)} 
+                    index = False, formatters={"date": lambda x: x.strftime(CSV.FORMAT)}  #converted it to a readable output.
                     )
             )
-
+            #output 
             total_income = filtered_df[filtered_df["category"] == "Income"]["amount"].sum()
             total_exspense = filtered_df[filtered_df["category"] == "Exspense"]["amount"].sum()
             print("\n")
@@ -49,9 +50,8 @@ class CSV:
 
             return filtered_df
 
-
         
-    @classmethod
+    @classmethod#Input dictionary 
     def add_entry(cls, date, amount, category, description):
         new_entry ={
             "date": date,
@@ -59,35 +59,38 @@ class CSV:
             "category": category,            
             "description": description
             }
-        with open(cls.CSV_FILE, "a", newline="") as csvfile:
+        #Open CSV for data input
+        with open(cls.CSV_FILE, "a", newline="") as csvfile: 
             writer= csv.DictWriter(csvfile, fieldnames=cls.COLUMNS)            
             writer.writerow(new_entry)
             print("Entry added sucessfully")
 
 def add():
+    #Format for data input
     CSV.iniatialize_csv()
+    #get data
     date = get_date("Enter the date of the transaction (dd-mm-yyyy) or enter for today's date: ", allow_default=True)
     amount = get_amount()
     category =get_category()
     description = get_description()
     CSV.add_entry(date, amount, category, description)
     
-
+#plot function
 def plot_transaction(df):
     df.set_index('date', inplace=True)
 
     income_df = (df[df["category"] == "Income"]
-                 .resample("D")
+                 .resample("D") # resample data frame by day
                  .sum()
                  .reindex(df.index, fill_value = 0)
                  )
     
     exspense_df = (df[df["category"] == "Exspense"]
-                 .resample("D")
+                 .resample("D") # resample data frame by day
                  .sum()
                  .reindex(df.index, fill_value = 0)
                  )
-    
+    #plot figure 
     plt.figure(figsize=(10, 5))
     plt.plot(income_df.index, income_df["amount"], label = "Income", color = "g")
     plt.plot(exspense_df.index, exspense_df["amount"], label = "Expense", color = "r")
